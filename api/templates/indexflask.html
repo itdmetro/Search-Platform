@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>北捷搜尋通平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+
+<!-- <body class="bg-image"> -->
+<body class="bg-image" style="background-image: url('static/images/DALLE1.jpg');">
+  <!-- adde "id=content" -->
+  <div id="content">
+
+      <div id="top-div">
+        <div id="usage_div">讀取中...</div>
+        <div id="input_box_outer_div">
+          <div id="input_box_div">
+            <!-- <textarea required id="input_box" placeholder="請輸入關鍵字進行搜尋&#10;例：捷運|北捷"></textarea><br> -->
+            <input required id="input_box" placeholder='請輸入關鍵字或添加其他指令進行搜尋'></input>
+            <!-- <input required id="input_box" placeholder='請輸入關鍵字或添加其他指令進行搜尋 例：&#10;1.捷運&北捷 (AND搜尋)&#10;2.捷運|北捷 (OR搜尋)&#10;3.北捷!台鐵!桃捷!中捷!高捷 (排除特定字詞，要排除的字詞前面加上!)&#10;4."台北捷運" (搜尋完全相符結果，字詞前後加上引號)'></input> -->
+            <select id="news_num_select">
+              <option value="" disabled selected>搜尋結果數量</option>
+              <option value=10>10筆</option>
+              <option value=20>20筆</option>
+              <option value=30>30筆</option>
+              <option value=50>50筆</option>
+            </select>
+            <button id="search-button" type="button" style="display:true"><i class="fas fa-search"></i></button>
+            <button id="clean-button" type="button" style="display:true"><i class="cross">❌</i><!-- <i class="fa-solid fa-xmark"></i> --></button>
+          </div>
+          <button id="and" type="button" style="border:2px solid;">包含</button>
+          <button id="or" type="button" style="border:2px solid;">或者</button>
+          <button id="exclude" type="button" style="border:2px solid;;">排除</button>
+          <button id="item1" type="button" style="border:2px solid;display:none;">捷運</button>
+          <button id="item2" type="button" style="border:2px solid;display:none;">北捷</button>
+          <button id="item3" type="button" style="border:2px solid;display:none;">桃捷</button>
+          <button id="item4" type="button" style="border:2px solid;display:none;">中捷</button>
+        </div>
+        <div id="input_box_outer_div2">
+          <button id="item5" type="button" style="border:2px solid;display:none;">高捷</button>
+          <button id="item6" type="button" style="border:2px solid;display:none;">地鐵</button>
+          <button id="item7" type="button" style="border:2px solid;display:none;">高鐵</button>
+          <button id="item8" type="button" style="border:2px solid;display:none;">台鐵</button>
+          <button id="item9" type="button" style="border:2px solid;display:none;">火車</button>
+          <button id="item10" type="button" style="border:2px solid;display:none;">小巨蛋</button>
+          <button id="item11" type="button" style="border:2px solid;display:none;">兒樂</button>
+          <button id="item12" type="button" style="border:2px solid;display:none;">新樂園</button>
+          <button id="item13" type="button" style="border:2px solid;display:none;">貓纜</button>
+          <button id="item14" type="button" style="border:2px solid;display:none;">纜車</button>
+          <button id="item15" type="button" style="border:2px solid;display:none;">捷之旅</button>
+          <button id="item16" type="button" style="border:2px solid;display:none;">北投會館</button>
+          <button id="item17" type="button" style="border:2px solid;display:none;">聯開</button>
+          <button id="item18" type="button" style="border:2px solid;display:none;">悠遊卡</button>
+          <button id="item19" type="button" style="border:2px solid;display:none;">黃清信</button>
+          <button id="item20" type="button" style="border:2px solid;display:none;">趙紹廉</button>
+        </div>
+
+
+      </div>
+
+      <!-- <div id="buttons-div">
+        <div id="buttons-block">
+          <button id="search-button" type="button" style="border:2px solid; display:true"><i class="fas fa-search"></i></button>
+          <button id="clean-button" type="button" style="border:2px solid; display:true"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div> -->
+
+      <div id="bottom-div">
+        <div id="output_box">
+          <!-- <div id="output_box_scope"> -->
+            <!-- <span id="output_box_text"></span> -->
+            <!-- <b>搜尋結果：</b><br> -->
+            <div id="output_box_text">歡迎來到北捷搜尋通平台，請在上方輸入關鍵字進行搜尋
+            <br>
+            <!-- <div id="output_box_text" style="display:none"></div> -->
+            <!-- <div class="cursor"></div> -->
+            </div>
+            <!-- <b>搜尋結果：</b><br> -->
+            <!-- <table id="news_box">
+              <tr>
+                <td class="checkbox-cell"><input type="checkbox" name="news_select" value="搜尋結果選擇"></td>
+                <td class="new_titlelink">1.搜尋結果標題和網址</td>
+              </tr>
+              <tr>
+                <td class="checkbox-cell"><input type="checkbox" name="news_select" value="搜尋結果選擇"></td>
+                <td class="new_titlelink">2.搜尋結果標題和網址</td>
+              </tr>
+            </table> -->
+        </div>
+        <div id="output_box_right_div">
+          <div id="output_box_right">
+              <div id="output_box_right_text" style="white-space: pre-line">請輸入關鍵字或添加其他指令進行搜尋 例：&#10;1.雙連&臭豆腐 (AND搜尋)&#10;2.雙連|臭豆腐 (OR搜尋)&#10;3.臭豆腐!蚵仔煎!麻油雞!牛肉麵!四神湯 (排除特定字詞，要排除的字詞前面加上!)&#10;4."雙連臭豆腐" (搜尋完全相符結果，字詞前後加上引號)
+              </div>
+          </div>
+          <div id="output_box_right_button">
+            <button id="example1" type="button" style="border:2px solid;">範例一</button>
+            <button id="example2" type="button" style="border:2px solid;">範例二</button>
+            <button id="example3" type="button" style="border:2px solid;">範例三</button>
+            <button id="example4" type="button" style="border:2px solid;">範例四</button>
+          </div>
+
+          <button id="clipboard-button" type="button" style="border:2px solid; display:true" disabled>搜尋結果複製至剪貼簿</button>
+          <button id="linebot-button" type="button" style="border:2px solid; display:none" disabled>搜尋結果傳送至Line Bot</button>
+
+        </div>
+      </div>
+
+      <!-- <div id="bottom-buttons-div"> -->
+        <!-- <div id="buttons-block"> -->
+          <!-- <button id="clipboard-button" type="button" style="border:2px solid; display:true" disabled>搜尋結果複製至剪貼簿</button> -->
+          <!-- <button id="linebot-button" type="button" style="border:2px solid; display:true" disabled>搜尋結果傳送至Line Bot</button> -->
+          <!-- <button id="db-button" type="button" style="border:2px solid; display:none">搜尋結果存入資料庫</button> -->
+          <!-- <button id="tts-button" type="button" style="border:2px solid; display:none">搜尋結果轉成語音檔</button> -->
+        <!-- </div> -->
+      <!-- </div> -->
+      
+  </div>
+
+  <!-- <script type="module" src="./index.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
